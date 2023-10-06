@@ -1,0 +1,21 @@
+service: aws-pc
+
+useDotenv: true
+
+provider:
+  name: aws
+  runtime: nodejs14.x
+
+functions:
+  getCard:
+    handler: src/controller/card/getCard.getCardByToken
+    events:
+      - httpApi: GET /card
+  saveCard:
+    handler: src/controller/card/saveCard.saveCardApi
+    events:
+      - httpApi: POST /card
+
+plugins:
+  - serverless-plugin-typescript
+  - serverless-offline
